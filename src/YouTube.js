@@ -25,22 +25,23 @@ class YouTube {
 
     fetchInfo(url, options = {}) {
         return new Promise((resolve, reject) => {
-            let videoID = this.parseVideoID(url);
-            let videoUrl = `${Constants.BASES.video}${videoID}`;
+            this.parseVideoID(url).then(videoID => {
+                let videoUrl = `${Constants.BASES.video}${videoID}`;
 
-            request.get(url).end((err, res) => {
-                if (err) return reject(err);
+                request.get(videoUrl).end((err, res) => {
+                    if (err) return reject(err);
 
-                let body = res.body;
+                    let body = res.text;
 
-                let unavailableAlert = Util.fetchIn(body, "<div id=\"player-unavailable\"", ">");
-                if (!/\bhid\b/.test(Util.fetchIn(unavailableAlert, "class=\"", "\""))) {
-                    unavailableAlert = Util.fetchIn(body, "<h1 id=\"unavailable-message\" class=\"message\">", "</h1>").trim();
-                    if (unavailableAlert !== "Content Warning") return reject(Util.buildError(2, unavailableAlert));
-                }
+                    let unavailableAlert = Util.fetchIn(body, "<div id=\"player-unavailable\"", ">");
+                    if (!/\bhid\b/.test(Util.fetchIn(unavailableAlert, "class=\"", "\""))) {
+                        unavailableAlert = Util.fetchIn(body, "<h1 id=\"unavailable-message\" class=\"message\">", "</h1>").trim();
+                        if (unavailableAlert !== "Content Warning") return reject(Util.buildError(2, unavailableAlert));
+                    }
 
-                
-            });
+                    
+                });
+            }).catch(reject);
         });
     }
 }
