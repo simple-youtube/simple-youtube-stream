@@ -1,11 +1,9 @@
 const request = require("superagent");
 const url = require("url");
+const Util = require("./util/Util");
+const Constants = require("./util/Constants");
 
-const Util = require("./Util");
-const Constants = require("./Constants");
-
-
-class YTData {
+class YouTube {
     parseVideoID(input) {
         return new Promise((resolve, reject) => {
             let expr = /^[a-zA-Z0-9-_]{11}$/;
@@ -40,8 +38,10 @@ class YTData {
                     if (unavailableAlert !== "Content Warning") return reject(unavailableAlert);
                 }
 
-                
+
             });
         });
     }
 }
+
+module.exports = YouTube;

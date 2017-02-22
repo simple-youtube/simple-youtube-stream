@@ -1,0 +1,22 @@
+{
+    "name": "simple-youtube-stream",
+    "version": "1.0.0",
+    "description": "A module to get video information and a stream without the YouTube API.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "superagent": "^3.4.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HyperCoder2975/simple-youtube-stream.git"
+    },
+    "author": "HyperCoder2975",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/HyperCoder2975/simple-youtube-stream/issues"
+    },
+    "homepage": "https://github.com/HyperCoder2975/simple-youtube-stream"
+}
