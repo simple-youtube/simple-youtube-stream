@@ -16,7 +16,8 @@ class YouTube {
                 id = split[split.length - 1];
             }
 
-            if (!id || !expr.test(id)) return reject("An invalid ID was supplied.");
+            if (!id) return reject(Util.buildError(0));
+            if (!expr.test(id)) return reject(Util.buildError(1));
 
             return resolve(id);
         });
@@ -35,10 +36,10 @@ class YouTube {
                 let unavailableAlert = Util.fetchIn(body, "<div id=\"player-unavailable\"", ">");
                 if (!/\bhid\b/.test(Util.fetchIn(unavailableAlert, "class=\"", "\""))) {
                     unavailableAlert = Util.fetchIn(body, "<h1 id=\"unavailable-message\" class=\"message\">", "</h1>").trim();
-                    if (unavailableAlert !== "Content Warning") return reject(unavailableAlert);
+                    if (unavailableAlert !== "Content Warning") return reject(Util.buildError(2, unavailableAlert));
                 }
 
-
+                
             });
         });
     }

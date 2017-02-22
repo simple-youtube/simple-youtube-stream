@@ -1,3 +1,5 @@
+const Constants = require("./Constants");
+
 class Util {
     fetchIn(string, start, end) {
         let startString = string.indexOf(start);
@@ -10,6 +12,13 @@ class Util {
 
         let newString = slicedString.slice(0, endString);
         return newString;
+    }
+
+    buildError(code, err) {
+        let error = Constants.ERRORS[code];
+        let errorObject = { code: code, message: error };
+        if (err) Object.assign(errorObject, { ytmessage: err });
+        return errorObject;
     }
 }
 

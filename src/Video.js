@@ -1,5 +1,5 @@
-const Util = require("./Util");
-const StreamUtil = require("./StreamUtil");
+const Util = require("./util/Util");
+const StreamUtil = require("./util/Stream");
 
 class Video {
     constructor(url, data) {
@@ -11,7 +11,7 @@ class Video {
 
     fetchStream(options = {}) {
         let stream = StreamUtil.create();
-        
+
     }
 }
 
