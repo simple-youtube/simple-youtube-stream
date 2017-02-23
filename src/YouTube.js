@@ -39,7 +39,7 @@ class YouTube {
                         if (unavailableAlert !== "Content Warning") return reject(Util.buildError(2, unavailableAlert));
                     }
 
-                    
+                    return resolve(body); // This is just to use for something to return.
                 });
             }).catch(reject);
         });
