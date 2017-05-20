@@ -11,7 +11,7 @@ class YouTube {
 
             let parsedUrl = url.parse(input);
             let id = parsedUrl.query.v;
-            if (!Constants.includes(parsedUrl.hostname) && !id) {
+            if (!Constants.HOSTNAMES.includes(parsedUrl.hostname) && !id) {
                 let split = parsedUrl.pathname.split("/");
                 id = split[split.length - 1];
             }
